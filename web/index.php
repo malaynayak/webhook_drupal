@@ -6,9 +6,6 @@
 
 $uri = $_SERVER['REQUEST_URI'];
 $path_array = explode("/",ltrim($uri,"/"));
-if(empty($path_array[2])){
-	http_response_code(404);
-}
 
 /*
  * constructs a responce for api.ai
@@ -39,8 +36,7 @@ function generateResponse($response){
 
 $base_url = "https://duwdt.ply.st/api/";
 $output = [];
-print_r($path_array);exit;
-if($path_array[2] == "webhook"){
+if($path_array[1] == "webhook"){
 	$post_data = json_decode(file_get_contents('php://input'));
 	if(isset($post_data->result)){
 		$result = $post_data->result;
