@@ -39,6 +39,7 @@ function generateResponse($response){
 
 $base_url = "https://duwdt.ply.st/api/";
 $output = [];
+print_r($path_array);exit;
 if($path_array[2] == "webhook"){
 	$post_data = json_decode(file_get_contents('php://input'));
 	if(isset($post_data->result)){
