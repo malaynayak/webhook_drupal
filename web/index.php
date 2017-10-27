@@ -13,17 +13,17 @@ $path_array = explode("/",ltrim($uri,"/"));
  * results obtained from webservice
  */
 function makeWebhookResult($response){
-		$members_name = array_map(function($obj){
-			return $obj->title;
-		}, json_decode($response));
-		$members = implode($members_name,",");
-    return [
-        "speech" => $members,
-        "displayText" => $members,
+	$members_name = array_map(function($obj){
+		return $obj->title;
+	}, json_decode($response));
+	$members = implode($members_name,",");
+	return [
+		"speech" => $members,
+		"displayText" => $members,
         # "data": data,
         # "contextOut": [],
-        "source" => "apiai-drupal-webhook-sample"
-    ];
+		"source" => "apiai-drupal-webhook-sample"
+	];
 }
 
 /*
@@ -64,10 +64,10 @@ if($path_array[1] == "webhook"){
 		if(isset($parameters->expertise) 
 			&& !empty($parameters->expertise)){
 			$val = strtolower($parameters->expertise);
-			$responce = file_get_contents($base_url."team-members?field_expertise=".$val);
-			$output  = makeWebhookResult($responce);
-			generateResponse($output);
-			exit;
-		}
+		$responce = file_get_contents($base_url."team-members?field_expertise=".$val);
+		$output  = makeWebhookResult($responce);
+		generateResponse($output);
+		exit;
 	}
+}
 }
